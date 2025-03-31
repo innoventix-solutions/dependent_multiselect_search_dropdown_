@@ -1,7 +1,9 @@
 name: dependent_multiselect_search_dropdown
 description: A customizable Flutter widget for multi-select, searchable, and dependent dropdowns.
 version: 1.0.0
-publish_to: "https://pub.dev"
+#publish_to: "https://pub.dev"
+publish_to: "none"
+
 repository: https://github.com/innoventix-solutions/dependent_multiselect_search_dropdown_
 
 environment:
