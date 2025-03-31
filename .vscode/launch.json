@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "request": "attach",
+            "type": "chrome",
+            "webRoot": "${workspaceFolder}/example" // Ensure this is the correct path to your web project
+        },
+        {
+            "name": "dependent_multiselect_search_dropdown",
+            "request": "launch",
+            "type": "dart",
+            "program": "${workspaceFolder}/example/lib/main.dart" // Ensure this points to the main entry file
+        },
+        {
+            "name": "dependent_multiselect_search_dropdown (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "program": "${workspaceFolder}/example/lib/main.dart"
+        },
+        {
+            "name": "dependent_multiselect_search_dropdown (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "${workspaceFolder}/example/lib/main.dart"
+        }
+    ]
+}
