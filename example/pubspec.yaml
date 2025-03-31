@@ -1,6 +1,7 @@
 name: example
 description: Example app for dependent_multiselect_search_dropdown
-publish_to: pubspec.yaml
+#publish_to: pubspec.yaml
+publish_to: "none"
 
 environment:
   sdk: ">=2.17.0 <4.0.0"
