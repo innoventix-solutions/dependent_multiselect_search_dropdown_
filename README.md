@@ -14,8 +14,10 @@ This widget allows cascading dropdown behavior where the selection of one dropdo
 
 ## 📦 Installation
 
+
 Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
   dependent_multiselect_search_dropdown: ^1.0.0
+
