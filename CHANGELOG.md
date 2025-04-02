@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.2] - Recent Updates
+- Fixed bugs related to dropdown filtering.
+
+---
+
 ## [1.1.1] - Recent Updates
 - Fixed bugs related to dropdown filtering.
 - Improved validation for empty selections.

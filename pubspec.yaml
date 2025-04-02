@@ -1,6 +1,6 @@
 name: dependent_multiselect_search_dropdown
 description: A customizable Flutter widget for multi-select, searchable, and dependent dropdowns.
-version: 1.1.1
+version: 1.1.2
 repository: https://github.com/innoventix-solutions/dependent_multiselect_search_dropdown_
 
 environment:
@@ -26,7 +26,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
 assets:
-  - assets/images/
+  - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
