@@ -310,6 +310,3 @@ class _ExampleDropdownScreenState extends State<ExampleDropdownScreen> {
     );
   }
 }
-
-///run
-///flutter run -d chrome --target=example/lib/main.dart

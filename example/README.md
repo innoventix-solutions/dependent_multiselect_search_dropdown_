@@ -36,3 +36,25 @@ Add this to your `pubspec.yaml`:
 ```yaml
 dependencies:
   dependent_multiselect_search_dropdown: ^1.0.0
+
+## Screenshots
+
+![Screenshot 1](assets/images/Screenshot_1.jpg)
+_Example of cascading dropdown with country, state, and city._
+
+![Screenshot 2](assets/images/Screenshot_2.jpg)
+_Another view showing the multi-selection dropdown._
+
+![Screenshot 2](assets/images/Screenshot_3.jpg)
+_Another view showing the multi-selection dropdown._
+
+![Screenshot 2](assets/images/Screenshot_4.jpg)
+_Another view showing the multi-selection dropdown._
+
+## Demo Video
+
+Check out the demo videos for the package:
+
+[![Watch the video 1st](https://www.youtube.com/shorts/9c93fJ3yyyY)
+
+[![Watch the video 2nd](https://www.youtube.com/shorts/3ZFJjEoIv6U)
