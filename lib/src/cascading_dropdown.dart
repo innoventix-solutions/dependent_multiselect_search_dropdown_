@@ -3,8 +3,22 @@ import 'package:flutter/material.dart';
 import 'dropdown_controller.dart';
 import 'dropdown_model.dart';
 
+/// The `CascadingDropdown` widget allows you to create a dropdown
+/// whose options depend on the selection of the previous dropdown.
+///
+/// Example usage:
+/// ```dart
+/// CascadingDropdown(
+///   controller: _controller,
+///   hintText: "Select a country",
+/// )
+/// ```
+
 class CascadingDropdown<T> extends StatefulWidget {
+  /// The controller that manages the state of the dropdown.
   final DropdownController<T> controller;
+
+  /// The hint text to display when no option is selected.
   final String hintText;
   final String searchHint;
   final String validateHint;
@@ -12,6 +26,11 @@ class CascadingDropdown<T> extends StatefulWidget {
   final bool isEnabled;
   final void Function(List<DropdownItem<T>>)? onItemsChanged;
 
+  /// Creates a new instance of the `CascadingDropdown` widget.
+  ///
+  /// The `controller` is used to manage the dropdown's state, and
+  /// `hintText` is the label shown when no option is selected.
+  ///
   const CascadingDropdown({
     super.key,
     required this.controller,
@@ -114,6 +133,7 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
 
   @override
   Widget build(BuildContext context) {
+    // Widget implementation...
     final hasSelection = _selectedItems.isNotEmpty;
 
     return AnimatedOpacity(

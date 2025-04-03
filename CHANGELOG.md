@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.3] - Recent Updates
+- Improved document.
+- Fixed minor bugs.
+
+---
+
 ## [1.1.2] - Recent Updates
 - Fixed bugs related to dropdown filtering.
 
