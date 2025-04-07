@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4] - Recent Updates
+- Add Publisher
+- Fixed minor bugs.
+
+---
+
+
 ## [1.1.3] - Recent Updates
 - Improved document.
 - Fixed minor bugs.
