@@ -8,7 +8,7 @@ The `dependent_multiselect_search_dropdown` widget provides **cascading dropdown
 
 ## ⚙️ How It Works
 
-The `DependentMultiSelectDropdown` widget works by linking multiple dropdowns together. Each dropdown is dependent on the previous one. When a selection is made in one dropdown, the next dropdown's options are filtered based on the previous choice.
+The `DependentMultiSelectDropdown` widget works by linking multiple dropdowns together. Each dropdown is dependent on the previous one. When a selection is made in one dropdown, the next dropdown's options are filtered based on the previous choice.including support for custom entries like "Other" and dynamic data loading.
 
 ---
 
@@ -33,10 +33,13 @@ If you decide to **remove** any selection, the dependent dropdowns will reset, a
 ## ✨ Features
 
 - ✅ Cascading dropdowns (e.g., Country → State → City)
-- 🔍 Searchable options
+- 🔍 Searchable dropdown with smooth animations
 - ✅ Single & Multi-selection support
 - 🔄 Dynamically update dropdown data
-- 🚫 Error validation for a value that is not in the list
+- ➕ "Add Other" option for user-defined entries
+- 🌐 Easy localization support (e.g., "No city found", "Search country")
+- 🧠 Controller-based architecture
+- 🛠️ Minimal setup with flexible data models
 
 ## 🚀 Installation
 
@@ -44,7 +47,7 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  dependent_multiselect_search_dropdown: ^1.1.4
+  dependent_multiselect_search_dropdown: ^1.2.0
 ```
 
 🛠️ Feedback and Contributions
@@ -60,6 +63,12 @@ We welcome feedback, suggestions, and contributions! Feel free to open an issue 
 <img src="assets/Screenshot_3.jpg" alt="Screenshot 3" width="300"/>
 
 <img src="assets/Screenshot_4.jpg" alt="Screenshot 4" width="300"/>
+
+<img src="assets/Screenshot_5.jpg" alt="Screenshot 4" width="300"/>
+
+<img src="assets/Screenshot_6.jpg" alt="Screenshot 4" width="300"/>
+
+<img src="assets/Screenshot_7.jpg" alt="Screenshot 4" width="300"/>
 
 
 ▶ Demo Video

@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.0] - 2025-04-15
+- ✨ Added
+- Support for "Other" option: Users can now add custom entries not present in the dropdown.
+
+
 ## [1.1.4] - Recent Updates
 - Add Publisher
 - Fixed minor bugs.

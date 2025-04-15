@@ -3,22 +3,9 @@ import 'package:flutter/material.dart';
 import 'dropdown_controller.dart';
 import 'dropdown_model.dart';
 
-/// The `CascadingDropdown` widget allows you to create a dropdown
-/// whose options depend on the selection of the previous dropdown.
-///
-/// Example usage:
-/// ```dart
-/// CascadingDropdown(
-///   controller: _controller,
-///   hintText: "Select a country",
-/// )
-/// ```
-
+/// A reusable dropdown widget supporting multi-select, search, custom entry, and cascading logic.
 class CascadingDropdown<T> extends StatefulWidget {
-  /// The controller that manages the state of the dropdown.
   final DropdownController<T> controller;
-
-  /// The hint text to display when no option is selected.
   final String hintText;
   final String searchHint;
   final String validateHint;
@@ -26,11 +13,6 @@ class CascadingDropdown<T> extends StatefulWidget {
   final bool isEnabled;
   final void Function(List<DropdownItem<T>>)? onItemsChanged;
 
-  /// Creates a new instance of the `CascadingDropdown` widget.
-  ///
-  /// The `controller` is used to manage the dropdown's state, and
-  /// `hintText` is the label shown when no option is selected.
-  ///
   const CascadingDropdown({
     super.key,
     required this.controller,
@@ -49,8 +31,11 @@ class CascadingDropdown<T> extends StatefulWidget {
 class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
     with TickerProviderStateMixin {
   final TextEditingController _searchController = TextEditingController();
+  final TextEditingController _customInputController = TextEditingController();
+
   List<DropdownItem<T>> _filteredItems = [];
   List<DropdownItem<T>> _selectedItems = [];
+
   bool _isSearchMode = false;
   String? _errorText;
 
@@ -62,17 +47,18 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
     widget.controller.addListener(_onControllerChange);
   }
 
+  /// Reacts to changes in the controller (new options or selected items)
   void _onControllerChange() {
     setState(() {
       _filteredItems = widget.controller.options;
       _selectedItems = widget.controller.selectedItems;
-
       if (widget.isEnabled) {
         _isSearchMode = false;
       }
     });
   }
 
+  /// Toggles the dropdown open/close state
   void _toggleSearchMode() {
     if (!widget.isEnabled) return;
     setState(() {
@@ -81,6 +67,7 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
     });
   }
 
+  /// Filters dropdown options based on search input
   void _filterItems(String query) {
     setState(() {
       _filteredItems = widget.controller.options
@@ -90,6 +77,44 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
     });
   }
 
+  /// Shows a dialog allowing user to add a custom entry
+  void _promptCustomEntry() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text("Add custom ${widget.hintText.split(' ').last}"),
+        content: TextField(
+          controller: _customInputController,
+          decoration: const InputDecoration(hintText: "Enter value"),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              final input = _customInputController.text.trim();
+              if (input.isNotEmpty) {
+                final newItem = DropdownItem<T>(
+                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                  name: input,
+                  value: input as T,
+                );
+                setState(() {
+                  // Add new item to list and select it
+                  widget.controller
+                      .setOptions([...widget.controller.options, newItem]);
+                  _selectItem(newItem);
+                });
+                _customInputController.clear();
+              }
+              Navigator.pop(context);
+            },
+            child: const Text("Add"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Selects or deselects an item from the dropdown
   void _selectItem(DropdownItem<T> item) {
     setState(() {
       if (widget.isMultiSelect) {
@@ -107,6 +132,7 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
     widget.onItemsChanged?.call(_selectedItems);
   }
 
+  /// Removes a selected item
   void _removeSelectedItem(DropdownItem<T> item) {
     setState(() {
       _selectedItems.remove(item);
@@ -115,6 +141,7 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
     widget.onItemsChanged?.call(_selectedItems);
   }
 
+  /// Validates if a selection has been made
   String? validate() {
     if (_selectedItems.isEmpty) {
       setState(() => _errorText = widget.validateHint);
@@ -127,13 +154,13 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
   @override
   void dispose() {
     _searchController.dispose();
+    _customInputController.dispose();
     widget.controller.removeListener(_onControllerChange);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Widget implementation...
     final hasSelection = _selectedItems.isNotEmpty;
 
     return AnimatedOpacity(
@@ -142,6 +169,7 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Dropdown field container
           GestureDetector(
             onTap: _toggleSearchMode,
             child: Container(
@@ -158,6 +186,7 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (_isSearchMode)
+                    // Search bar
                     TextField(
                       controller: _searchController,
                       onChanged: _filterItems,
@@ -168,6 +197,7 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
                       ),
                     )
                   else
+                    // Display selected count or hint
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -188,6 +218,7 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
                         ),
                       ],
                     ),
+                  // Show selected chips
                   AnimatedSize(
                     duration: const Duration(milliseconds: 300),
                     child: hasSelection
@@ -213,12 +244,15 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
               ),
             ),
           ),
+          // Show validation error if any
           if (_errorText != null)
             Padding(
               padding: const EdgeInsets.only(top: 4, left: 8),
               child:
                   Text(_errorText!, style: const TextStyle(color: Colors.red)),
             ),
+
+          // Dropdown list with optional "Add Other"
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             child: _isSearchMode
@@ -238,37 +272,54 @@ class _CascadingDropdownState<T> extends State<CascadingDropdown<T>>
                         ),
                       ],
                     ),
-                    child: _filteredItems.isEmpty
-                        ? Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: AnimatedOpacity(
-                                opacity: 1,
-                                duration: const Duration(milliseconds: 300),
-                                child: Text(
-                                  "No ${widget.hintText.split(' ').last} found",
-                                  style: const TextStyle(color: Colors.grey),
+                    child: Column(
+                      children: [
+                        // Dropdown item list
+                        Expanded(
+                          child: _filteredItems.isEmpty
+                              ? Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: AnimatedOpacity(
+                                      opacity: 1,
+                                      duration:
+                                          const Duration(milliseconds: 300),
+                                      child: Text(
+                                        "No ${widget.hintText.split(' ').last} found",
+                                        style:
+                                            const TextStyle(color: Colors.grey),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : ListView.builder(
+                                  shrinkWrap: true,
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4),
+                                  itemCount: _filteredItems.length,
+                                  itemBuilder: (_, index) {
+                                    final item = _filteredItems[index];
+                                    final isSelected =
+                                        _selectedItems.contains(item);
+                                    return CheckboxListTile(
+                                      value: isSelected,
+                                      onChanged: (_) => _selectItem(item),
+                                      title: Text(item.name),
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      activeColor: Colors.teal,
+                                    );
+                                  },
                                 ),
-                              ),
-                            ),
-                          )
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            padding: const EdgeInsets.symmetric(vertical: 4),
-                            itemCount: _filteredItems.length,
-                            itemBuilder: (_, index) {
-                              final item = _filteredItems[index];
-                              final isSelected = _selectedItems.contains(item);
-                              return CheckboxListTile(
-                                value: isSelected,
-                                onChanged: (_) => _selectItem(item),
-                                title: Text(item.name),
-                                controlAffinity:
-                                    ListTileControlAffinity.leading,
-                                activeColor: Colors.teal,
-                              );
-                            },
-                          ),
+                        ),
+                        // Add custom entry button
+                        TextButton.icon(
+                          onPressed: _promptCustomEntry,
+                          icon: const Icon(Icons.add, size: 18),
+                          label: const Text("Add Other"),
+                        )
+                      ],
+                    ),
                   )
                 : const SizedBox.shrink(key: ValueKey("empty")),
           ),
