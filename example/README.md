@@ -56,19 +56,17 @@ We welcome feedback, suggestions, and contributions! Feel free to open an issue 
 
 📸 Screenshot
 
-<img src="assets/Screenshot_1.jpg" alt="Screenshot 1" width="300"/>
-
 <img src="assets/Screenshot_2.jpg" alt="Screenshot 2" width="300"/>
 
 <img src="assets/Screenshot_3.jpg" alt="Screenshot 3" width="300"/>
 
 <img src="assets/Screenshot_4.jpg" alt="Screenshot 4" width="300"/>
 
-<img src="assets/Screenshot_5.jpg" alt="Screenshot 4" width="300"/>
+<img src="assets/Screenshot_5.jpg" alt="Screenshot 5" width="300"/>
 
-<img src="assets/Screenshot_6.jpg" alt="Screenshot 4" width="300"/>
+<img src="assets/Screenshot_6.jpg" alt="Screenshot 6" width="300"/>
 
-<img src="assets/Screenshot_7.jpg" alt="Screenshot 4" width="300"/>
+<img src="assets/Screenshot_7.jpg" alt="Screenshot 7" width="300"/>
 
 
 ▶ Demo Video
@@ -82,3 +80,7 @@ _This video demonstrates the cascading dropdown feature in action._
 [![Watch the video](https://img.youtube.com/vi/3ZFJjEoIv6U/0.jpg)](https://www.youtube.com/shorts/3ZFJjEoIv6U)
 
 _This video showcases the multi-selection feature._
+
+[![Watch the video](https://img.youtube.com/vi/3ZFJjEoIv6U/0.jpg)](https://www.youtube.com/shorts/MqsgP7Tolpk)
+
+_This video showcases the Other selection feature._
