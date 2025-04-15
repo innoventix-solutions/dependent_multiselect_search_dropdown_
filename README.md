@@ -47,7 +47,7 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  dependent_multiselect_search_dropdown: ^1.2.0
+  dependent_multiselect_search_dropdown: ^1.2.1
 ```
 
 🛠️ Feedback and Contributions

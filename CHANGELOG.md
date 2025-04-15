@@ -1,5 +1,11 @@
 # Changelog
 
+ 1.2.1
+## [1.2.1] - 2025-04-15
+- ✨ Added
+- Support for "Other" option: Users can now add custom entries not present in the dropdown.
+- Added a video URL to help users understand the package easily.
+
 ## [1.2.0] - 2025-04-15
 - ✨ Added
 - Support for "Other" option: Users can now add custom entries not present in the dropdown.
